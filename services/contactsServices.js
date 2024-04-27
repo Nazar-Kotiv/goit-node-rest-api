@@ -54,7 +54,8 @@ async function updateOneContact(id, newData) {
     await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
     return updatedContact;
   } catch (error) {
-    throw new Error("Error updating contact");
+    console.error("Error updating contact:", error);
+    return null;
   }
 }
 

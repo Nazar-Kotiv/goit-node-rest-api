@@ -30,12 +30,6 @@
     "phone": "(715) 598-5792"
   },
   {
-    "id": "C9sjBfCo4UJCWjzBnOtxl",
-    "name": "Simon Morton",
-    "email": "dui.Fusce.diam@Donec.com",
-    "phone": "(233) 738-2360"
-  },
-  {
     "id": "e6ywwRe4jcqxXfCZOj_1e",
     "name": "Thomas Lucas",
     "email": "nec@Nulla.com",
@@ -58,5 +52,11 @@
     "name": "Chaim 1",
     "email": "dui.in@egetlacus.ca",
     "phone": "(294)42424"
+  },
+  {
+    "id": "5377908f-1d1f-4afc-844f-a0c02e6a5031",
+    "name": "Chaim 2",
+    "email": "dui.in@egetlacus.ca",
+    "phone": "(294)424243412"
   }
 ]
