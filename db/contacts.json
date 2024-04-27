@@ -42,12 +42,6 @@
     "phone": "(748) 206-2688"
   },
   {
-    "id": "47f6803b-1b6d-446a-be84-43bb5db8834f",
-    "name": "Chaim",
-    "email": "dui.in@egetlacus.ca",
-    "phone": "(294)"
-  },
-  {
     "id": "16dce2da-d96b-4b2e-8135-6351964f13e2",
     "name": "Chaim 1",
     "email": "dui.in@egetlacus.ca",
@@ -58,5 +52,17 @@
     "name": "Chaim 2",
     "email": "dui.in@egetlacus.ca",
     "phone": "(294)424243412"
+  },
+  {
+    "id": "7866e7aa-2bd5-4224-a3fc-98bd8a96d000",
+    "name": "Chaim",
+    "email": "dui.in@egetlacus.ca",
+    "phone": "(294)"
+  },
+  {
+    "id": "54a7d3b4-3b8e-4fff-bb75-2d4a55803899",
+    "name": "Chaim new",
+    "email": "dui.in@egetlacus.ca",
+    "phone": "(294)"
   }
 ]
