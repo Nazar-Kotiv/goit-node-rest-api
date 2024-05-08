@@ -13,7 +13,7 @@ export const auth = (req, res, next) => {
   const [bearer, token] = authorizationHeader.split(" ");
 
   if (bearer !== "Bearer") {
-    next(HttpError(401, "Not authorized"));
+    return next(HttpError(401, "Not authorized"));
   }
 
   try {
@@ -28,14 +28,8 @@ export const auth = (req, res, next) => {
 
       const user = await User.findById(decode.id);
 
-      if (user === null) {
-        const error = new HttpError(401, "Invalid token");
-        return next(error);
-      }
-
-      if (user.token !== token) {
-        const error = new HttpError(401, "Invalid token");
-        return next(error);
+      if (!user || user.token !== token) {
+        return next(HttpError(401, "Invalid token"));
       }
 
       req.user = {
@@ -45,7 +39,7 @@ export const auth = (req, res, next) => {
 
       next();
     });
-  } catch {
+  } catch (error) {
     next(HttpError(401, "Not authorized"));
   }
 };
