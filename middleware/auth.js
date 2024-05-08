@@ -16,30 +16,26 @@ export const auth = (req, res, next) => {
     return next(HttpError(401, "Not authorized"));
   }
 
-  try {
-    jwt.verify(token, SECRET_KEY, async (err, decode) => {
-      if (err) {
-        if (err.name === "TokenExpiredError") {
-          return res.status(401).send({ message: "Token expired" });
-        }
-
-        return res.status(401).send({ message: "Not authorized" });
+  jwt.verify(token, SECRET_KEY, async (err, decode) => {
+    if (err) {
+      if (err.name === "TokenExpiredError") {
+        return res.status(401).send({ message: "Token expired" });
       }
 
-      const user = await User.findById(decode.id);
+      return res.status(401).send({ message: "Not authorized" });
+    }
 
-      if (!user || user.token !== token) {
-        return next(HttpError(401, "Invalid token"));
-      }
+    const user = await User.findById(decode.id);
 
-      req.user = {
-        id: decode.id,
-        name: decode.name,
-      };
+    if (!user || user.token !== token) {
+      return next(HttpError(401, "Invalid token"));
+    }
 
-      next();
-    });
-  } catch (error) {
-    next(HttpError(401, "Not authorized"));
-  }
+    req.user = {
+      id: decode.id,
+      name: decode.name,
+    };
+
+    next();
+  });
 };

@@ -44,9 +44,15 @@ export const deleteContact = async (req, res, next) => {
 };
 
 export const createContact = async (req, res, next) => {
-  const { name, email, phone, owner } = req.body;
+  // const { name, email, phone, owner } = req.body;
+  const contact = {
+    name: req.body.name,
+    email: req.body.email,
+    phone: req.body.phone,
+    owner: req.user.id,
+  };
   try {
-    const newContact = await Contact.create({ name, email, phone, owner });
+    const newContact = await Contact.create(contact);
     res.status(201).json(newContact);
   } catch (error) {
     next(error);
