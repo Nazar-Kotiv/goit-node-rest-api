@@ -3,8 +3,8 @@ import Contact from "../models/contacts.js";
 
 export const getAllContacts = async (req, res, next) => {
   try {
-    const { _id: owner } = req.user;
-    const allContacts = await Contact.find({ owner });
+    const owner = req.user.id;
+    const allContacts = await Contact.find({ owner: owner.toString() });
     res.status(200).json(allContacts);
   } catch (error) {
     next(error);
