@@ -3,7 +3,8 @@ import Contact from "../models/contacts.js";
 
 export const getAllContacts = async (req, res, next) => {
   try {
-    const allContacts = await Contact.find();
+    const { _id: owner } = req.user;
+    const allContacts = await Contact.find({ owner });
     res.status(200).json(allContacts);
   } catch (error) {
     next(error);
@@ -14,6 +15,10 @@ export const getOneContact = async (req, res, next) => {
   try {
     const { id } = req.params;
     const oneContact = await Contact.findById(id);
+    if (oneContact.owner.toString() !== req.user.id) {
+      const error = new HttpError(404);
+      return next(error);
+    }
     if (oneContact) {
       res.status(200).json(oneContact);
     } else {
@@ -39,9 +44,9 @@ export const deleteContact = async (req, res, next) => {
 };
 
 export const createContact = async (req, res, next) => {
-  const { name, email, phone } = req.body;
+  const { name, email, phone, owner } = req.body;
   try {
-    const newContact = await Contact.create({ name, email, phone });
+    const newContact = await Contact.create({ name, email, phone, owner });
     res.status(201).json(newContact);
   } catch (error) {
     next(error);
