@@ -44,7 +44,6 @@ export const deleteContact = async (req, res, next) => {
 };
 
 export const createContact = async (req, res, next) => {
-  // const { name, email, phone, owner } = req.body;
   const contact = {
     name: req.body.name,
     email: req.body.email,
