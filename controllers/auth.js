@@ -17,14 +17,14 @@ export const register = async (req, res, next) => {
     }
 
     const passwordHash = await bcrypt.hash(password, 10);
-    const awatarURL = gravatar.url(emailInLowerCase);
+    const avatarURL = gravatar.url(emailInLowerCase);
 
     await User.create({
       ...req.body,
       name,
       email: emailInLowerCase,
       password: passwordHash,
-      awatarURL,
+      avatarURL,
     });
 
     res.status(201).send({ message: "Registration successful" });

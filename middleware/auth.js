@@ -42,16 +42,16 @@ export const auth = (req, res, next) => {
     next();
   });
 };
-export const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, path.resolve(__dirname, "../public/avatars"));
-  },
-  filename: function (req, file, cb) {
-    cb(null, Math.random() + file.originalname);
-  },
-});
+// export const storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, path.resolve(__dirname, "../public/avatars"));
+//   },
+//   filename: function (req, file, cb) {
+//     cb(null, Math.random() + file.originalname);
+//   },
+// });
 
-export const upload = multer({
-  storage,
-  // limits: {},
-});
+// export const upload = multer({
+//   storage,
+//   // limits: {},
+// });
