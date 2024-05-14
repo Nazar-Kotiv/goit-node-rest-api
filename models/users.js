@@ -19,6 +19,10 @@ export const userSchema = new Schema(
       type: String,
       default: null,
     },
+    awatarURL: {
+      type: String,
+      default: null,
+    },
   },
   { versionKey: false, timestamps: false }
 );

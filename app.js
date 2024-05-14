@@ -3,6 +3,7 @@ import morgan from "morgan";
 import cors from "cors";
 import "dotenv/config";
 import mongoose from "mongoose";
+import path from "path";
 
 import { contactsRouter } from "./routes/contactsRouter.js";
 import { authRouter } from "./routes/auth.js";
@@ -12,6 +13,9 @@ const app = express();
 app.use(morgan("tiny"));
 app.use(cors());
 app.use(express.json());
+
+// const publicDirectoryPath = path.join(__dirname, "public");
+// app.use(express.static(publicDirectoryPath));
 
 app.use("/api/contacts", contactsRouter);
 app.use("/users", authRouter);
