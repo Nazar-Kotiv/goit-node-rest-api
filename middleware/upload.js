@@ -8,8 +8,8 @@ const storage = multer.diskStorage({
     cb(null, path.resolve("tmp"));
   },
   filename(req, file, cb) {
-    const extname = path.extname(file.originalname); // .png
-    const basename = path.basename(file.originalname, extname); // TrevorPhilips-GTAV
+    const extname = path.extname(file.originalname);
+    const basename = path.basename(file.originalname, extname);
     const suffix = crypto.randomUUID();
 
     console.log(`${basename}-${suffix}${extname}`);
