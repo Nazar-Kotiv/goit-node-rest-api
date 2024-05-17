@@ -6,6 +6,6 @@ import upload from "../middleware/upload.js";
 const usersRouter = express.Router();
 
 usersRouter.get("/avatars", auth, getAvatar);
-usersRouter.patch("/avatars", auth, upload.single("avatarURL"), uploadAvatar);
+usersRouter.patch("/avatars", auth, upload.single("avatar"), uploadAvatar);
 
 export { usersRouter };
