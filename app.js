@@ -3,9 +3,11 @@ import morgan from "morgan";
 import cors from "cors";
 import "dotenv/config";
 import mongoose from "mongoose";
+import path from "node:path";
 
 import { contactsRouter } from "./routes/contactsRouter.js";
 import { authRouter } from "./routes/auth.js";
+import { usersRouter } from "./routes/users.js";
 
 const app = express();
 
@@ -13,8 +15,10 @@ app.use(morgan("tiny"));
 app.use(cors());
 app.use(express.json());
 
+app.use("/avatars", express.static(path.resolve("public/avatars")));
 app.use("/api/contacts", contactsRouter);
 app.use("/users", authRouter);
+app.use("/users", usersRouter);
 
 app.use((_, res) => {
   res.status(404).json({ message: "Route not found" });

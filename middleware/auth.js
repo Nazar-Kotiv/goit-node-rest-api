@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 import HttpError from "../helpers/HttpError.js";
 import User from "../models/users.js";
+
 const { SECRET_KEY } = process.env;
 
 export const auth = (req, res, next) => {

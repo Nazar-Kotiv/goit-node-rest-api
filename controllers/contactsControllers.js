@@ -23,7 +23,6 @@ export const getOneContact = async (req, res, next) => {
     next(error);
   }
 };
-
 export const deleteContact = async (req, res, next) => {
   try {
     const { id } = req.params;
