@@ -5,7 +5,6 @@ import { sendEmail } from "../helpers/sendEmail.js";
 import jwt from "jsonwebtoken";
 import gravatar from "gravatar";
 import { nanoid } from "nanoid";
-import e from "express";
 
 const { SECRET_KEY, BASE_URL } = process.env;
 
@@ -50,7 +49,8 @@ export const verify = async (req, res, next) => {
     const { verificationToken } = req.params;
     const user = await User.findOne({ verificationToken });
     if (!user) {
-      return HttpError(404, "User not found");
+      const error = new HttpError(404, "Not found");
+      return next(error);
     }
     await User.findByIdAndUpdate(user._id, {
       verify: true,
@@ -67,10 +67,12 @@ export const resendVerifyEmail = async (req, res, next) => {
     const { email } = req.body;
     const user = await User.findOne({ email });
     if (!user) {
-      return HttpError(400, "missing required field email");
+      const error = new HttpError(400, "missing required field email");
+      return next(error);
     }
     if (user.verify) {
-      return HttpError(400, "Verification has already been passed");
+      const error = new HttpError(400, "Verification has already been passed");
+      return next(error);
     }
     const verifyEmail = {
       to: email,
